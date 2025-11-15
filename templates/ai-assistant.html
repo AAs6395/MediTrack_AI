@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Assistant - Disease Prediction</title>
+    <link rel="stylesheet" href="/static/ai-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="ai-app-container">
+        <!-- Sidebar -->
+        <aside class="ai-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-section">
+                    <i class="fas fa-robot"></i>
+                    <h1>AI Health Assistant</h1>
+                    <p>Virtual Medical Companion</p>
+                </div>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>How It Works</h3>
+                    </div>
+                    <p>Enter your symptoms separated by commas, and our AI will predict possible diseases with detailed recommendations.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Example Symptoms</h3>
+                    </div>
+                    <div class="example-symptoms">
+                        <button class="symptom-chip" onclick="fillSymptoms('fever, cough, sore throat')">
+                            <i class="fas fa-thermometer"></i> Cold & Flu
+                        </button>
+                        <button class="symptom-chip" onclick="fillSymptoms('headache, fatigue, nausea')">
+                            <i class="fas fa-head-side-virus"></i> Migraine
+                        </button>
+                        <button class="symptom-chip" onclick="fillSymptoms('chest pain, shortness of breath')">
+                            <i class="fas fa-heart"></i> Cardiac
+                        </button>
+                        <button class="symptom-chip" onclick="fillSymptoms('stomach pain, nausea, vomiting')">
+                            <i class="fas fa-stomach"></i> Digestive
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-card features-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-star"></i>
+                        <h3>Features</h3>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> AI-Powered Disease Prediction</li>
+                        <li><i class="fas fa-check-circle"></i> Symptom Severity Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Health Recommendations</li>
+                        <li><i class="fas fa-check-circle"></i> Alternative Diagnoses</li>
+                        <li><i class="fas fa-check-circle"></i> Smart Autocomplete</li>
+                    </ul>
+                </div>
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p><strong>Medical Disclaimer:</strong> This AI assistant is for informational purposes only and not a substitute for professional medical advice. Always consult qualified healthcare providers for diagnosis and treatment.</p>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button class="back-btn" onclick="goBackToTracker()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Medical Tracker</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="ai-main-content">
+            <!-- Header -->
+            <header class="chat-header">
+                <div class="chat-header-left">
+                    <div class="ai-avatar">
+                        <i class="fas fa-robot"></i>
+                        <span class="status-dot"></span>
+                    </div>
+                    <div class="chat-title">
+                        <h2>AI Health Assistant</h2>
+                        <p class="status-text">
+                            <i class="fas fa-circle"></i> Online - Ready to Help
+                        </p>
+                    </div>
+                </div>
+                <div class="chat-header-right">
+                    <button class="header-btn" onclick="toggleThemeAI()" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="header-btn" id="clearChat" title="Clear Conversation">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="header-btn" onclick="goBackToTracker()" title="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be dynamically added here -->
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <div class="input-container">
+                    <button class="input-btn" title="Add symptoms">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="symptomInput" 
+                            placeholder="Enter your symptoms separated by commas (e.g., fever, cough, headache)..." 
+                            autocomplete="off"
+                        >
+                        <div id="autocompleteContainer" class="autocomplete-dropdown"></div>
+                    </div>
+                    <button class="send-btn" id="sendButton" title="Send message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="input-hints">
+                    <span class="hint-item">
+                        <i class="fas fa-keyboard"></i> Press Enter to send
+                    </span>
+                    <span class="hint-item">
+                        <i class="fas fa-lightbulb"></i> Type slowly for suggestions
+                    </span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <p>Analyzing symptoms with AI...</p>
+            <span class="loading-subtext">This may take a few seconds</span>
+        </div>
+    </div>
+
+    <script src="/static/ai-script.js"></script>
+    <script>
+        function goBackToTracker() {
+            window.location.href = '/';
+        }
+
+        function fillSymptoms(symptoms) {
+            document.getElementById('symptomInput').value = symptoms;
+            document.getElementById('symptomInput').focus();
+        }
+
+        function toggleThemeAI() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('ai-theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+            
+            const icon = document.querySelector('.chat-header-right .header-btn i.fa-moon, .chat-header-right .header-btn i.fa-sun');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('ai-theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            const icon = document.querySelector('.chat-header-right .header-btn i.fa-moon');
+            if (icon) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
+        }
+    </script>
+</body>
+</html>

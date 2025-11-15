@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Tracking & Engagement Kit</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Loads Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                 <!-- Html tag to make a icon -->
+                <i class="fas fa-heartbeat"></i>
+                <span>MediTrack Pro</span>
+            </div>
+            <div class="nav-menu">
+                 <!-- create a clickable link -->
+                <a href="#dashboard" class="nav-link active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#medications" class="nav-link">
+                    <i class="fas fa-pills"></i> Medications
+                </a>
+                <a href="#reminders" class="nav-link">
+                    <i class="fas fa-bell"></i> Reminders
+                </a>
+                <a href="#vitals" class="nav-link">
+                    <i class="fas fa-heart-pulse"></i> Vitals
+                </a>
+                <a href="#appointments" class="nav-link">
+                    <i class="fas fa-calendar-check"></i> Appointments
+                </a>
+                <button class="btn-theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Assistant Floating Button -->
+    <button class="ai-assistant-btn" onclick="openAIAssistant()" title="Open AI Health Assistant">
+        <i class="fas fa-robot"></i>
+        <span class="ai-pulse"></span>
+        <div class="ai-tooltip">AI Health Assistant</div>
+    </button>
+
+    <!-- create a box -->
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <i class="fas fa-hospital-user"></i>
+                    Medical Tracking & Engagement Kit
+                </h1>
+                <p class="hero-subtitle">Complete Health Management with AI-Powered Disease Prediction</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" onclick="openAIAssistant()">
+                        <i class="fas fa-robot"></i> Try AI Assistant
+                    </button>
+                    <button class="btn btn-outline btn-large" onclick="scrollToSection('medications')">
+                        <i class="fas fa-compass"></i> Explore Features
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Statistics Dashboard -->
+        <section id="dashboard" class="stats-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i> Health Dashboard
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-card stat-gradient-1">
+                    <div class="stat-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalMeds">0</h3>
+                        <p>Active Medications</p>
+                        <span class="stat-badge">Updated</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-gradient-2">
+                    <div class="stat-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="todayReminders">0</h3>
+                        <p>Today's Reminders</p>
+                        <span class="stat-badge">Scheduled</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-gradient-3">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="upcomingAppointments">0</h3>
+                        <p>Upcoming Appointments</p>
+                        <span class="stat-badge">Pending</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-gradient-4">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="vitalRecords">0</h3>
+                        <p>Vital Records</p>
+                        <span class="stat-badge">Tracked</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard">
+            <!-- Medication Tracker -->
+            <section id="medications" class="card card-hover">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-icon icon-medicine">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div>
+                            <h2>Medication Tracker</h2>
+                            <p class="card-subtitle">Manage your daily medications</p>
+                        </div>
+                    </div>
+                    <button class="btn-icon" onclick="toggleCard('medicationForm')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body" id="medicationForm">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label><i class="fas fa-capsules"></i> Medicine Name</label>
+                            <input type="text" id="medName" placeholder="Enter medicine name">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-weight"></i> Dosage</label>
+                            <input type="text" id="medDosage" placeholder="e.g., 500mg">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-redo"></i> Frequency</label>
+                            <select id="medFrequency">
+                                <option value="Once daily">Once daily</option>
+                                <option value="Twice daily">Twice daily</option>
+                                <option value="Three times daily">Three times daily</option>
+                                <option value="As needed">As needed</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-clock"></i> Time</label>
+                            <input type="time" id="medTime">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="addMedication()">
+                        <i class="fas fa-plus-circle"></i> Add Medication
+                    </button>
+                </div>
+                <div class="card-list" id="medicationList"></div>
+            </section>
+
+            <!-- Reminders -->
+            <section id="reminders" class="card card-hover">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-icon icon-reminder">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div>
+                            <h2>Health Reminders</h2>
+                            <p class="card-subtitle">Never miss important events</p>
+                        </div>
+                    </div>
+                    <button class="btn-icon" onclick="toggleCard('reminderForm')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body" id="reminderForm">
+                    <div class="input-group">
+                        <label><i class="fas fa-heading"></i> Reminder Title</label>
+                        <input type="text" id="reminderTitle" placeholder="e.g., Doctor visit">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-calendar-alt"></i> Date & Time</label>
+                        <input type="datetime-local" id="reminderDateTime">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-sticky-note"></i> Notes</label>
+                        <textarea id="reminderNotes" rows="3" placeholder="Additional notes..."></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="addReminder()">
+                        <i class="fas fa-bell-plus"></i> Set Reminder
+                    </button>
+                </div>
+                <div class="card-list" id="reminderList"></div>
+            </section>
+
+            <!-- Vital Signs -->
+            <section id="vitals" class="card card-hover">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-icon icon-vitals">
+                            <i class="fas fa-heart-pulse"></i>
+                        </div>
+                        <div>
+                            <h2>Vital Signs Tracker</h2>
+                            <p class="card-subtitle">Monitor your health metrics</p>
+                        </div>
+                    </div>
+                    <button class="btn-icon" onclick="toggleCard('vitalsForm')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body" id="vitalsForm">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label><i class="fas fa-heartbeat"></i> Blood Pressure (mmHg)</label>
+                            <input type="text" id="bloodPressure" placeholder="e.g., 120/80">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-heart"></i> Heart Rate (bpm)</label>
+                            <input type="number" id="heartRate" placeholder="e.g., 72">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-thermometer"></i> Temperature (°F)</label>
+                            <input type="number" step="0.1" id="temperature" placeholder="e.g., 98.6">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-droplet"></i> Blood Sugar (mg/dL)</label>
+                            <input type="number" id="bloodSugar" placeholder="e.g., 100">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="addVitalSigns()">
+                        <i class="fas fa-plus-circle"></i> Record Vitals
+                    </button>
+                </div>
+                <div class="card-list" id="vitalsList"></div>
+            </section>
+
+            <!-- Appointments -->
+            <section id="appointments" class="card card-hover">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <div class="card-icon icon-appointments">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h2>Appointments Manager</h2>
+                            <p class="card-subtitle">Schedule & track appointments</p>
+                        </div>
+                    </div>
+                    <button class="btn-icon" onclick="toggleCard('appointmentForm')">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="card-body" id="appointmentForm">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label><i class="fas fa-user-doctor"></i> Doctor/Clinic Name</label>
+                            <input type="text" id="appointmentDoctor" placeholder="Enter doctor or clinic name">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-stethoscope"></i> Appointment Type</label>
+                            <select id="appointmentType">
+                                <option value="Check-up">Check-up</option>
+                                <option value="Follow-up">Follow-up</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Test">Test/Lab Work</option>
+                                <option value="Emergency">Emergency</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-calendar-days"></i> Date & Time</label>
+                            <input type="datetime-local" id="appointmentDateTime">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-location-dot"></i> Location</label>
+                            <input type="text" id="appointmentLocation" placeholder="Clinic address">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="addAppointment()">
+                        <i class="fas fa-calendar-plus"></i> Schedule Appointment
+                    </button>
+                </div>
+                <div class="card-list" id="appointmentList"></div>
+            </section>
+        </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/static/script.js"></script>
+    <script>
+        function openAIAssistant() {
+            // Open in full screen/new tab instead of popup window
+            window.open('/ai-assistant', '_blank');
+        }
+
+        function toggleCard(formId) {
+            const form = document.getElementById(formId);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+            
+            const icon = document.querySelector('.btn-theme-toggle i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.querySelector('.btn-theme-toggle i').classList.replace('fa-moon', 'fa-sun');
+        }
+    </script>
+</body>
+</html>
