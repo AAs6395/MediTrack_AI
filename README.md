@@ -1,18 +1,16 @@
-# 🩺 AI-Powered Medical Tracking, Reminders & Engagement Kit
+# 🩺 MediTrack AI
+Welcome to MediTrack AI — an end-to-end AI-driven healthcare solution designed to help users monitor their health status, receive timely reminders, stay engaged with wellness routines, and gain insights through AI-powered analytics and predictions.
 
-Welcome to the **AI-Powered Medical Tracking, Reminders & Engagement Kit** — an end-to-end solution designed to help users monitor health status, receive timely reminders, stay engaged with their wellness routines, and be guided by AI-powered analytics and predictions.
+📌 Key Features
+Health Tracking Dashboard – Log and visualize health metrics over time, including vitals, symptoms, and medications.
 
----
+Smart Reminders & Alerts – Automated notifications for medications, appointments, exercise, and routine check-ups.
 
-## 📌 Key Features
+AI Analytics & Predictions – Machine learning models analyze health data to predict trends and suggest proactive actions.
 
-- **Health Tracking Dashboard** – Log and visualise health metrics over time (vitals, symptoms, medications).  
-- **Smart Reminders & Alerts** – Set automatic notifications for medication, appointments, exercise, or check-ups.  
-- **AI Analytics & Predictions** – Leverage machine learning models to predict health trends and suggest proactive actions.  
-- **Engagement Engine** – Interactive UI prompts, personalized feedback, and user engagement tools to encourage adherence.  
-- **Full-Stack Implementation** – Combines frontend (HTML/CSS/JS), backend (Flask/Node) and ML components (Python, models) in one kit.
+Engagement Engine – Interactive UI prompts and personalized feedback to improve user adherence and engagement.
 
----
+Full-Stack Implementation – Integrated frontend, backend, and AI components in a single scalable system.
 
 ## 📂 Project Structure
 
@@ -44,22 +42,23 @@ Welcome to the **AI-Powered Medical Tracking, Reminders & Engagement Kit** — a
 ## 🏁 Getting Started
 
 ### 1. Clone the repo  
-```bash
-git clone https://github.com/<YOUR_USERNAME>/AI-PoweredMedicalTrackingRemindersAndEngagementKit.git
-cd AI-PoweredMedicalTrackingRemindersAndEngagementKit
+git clone https://github.com/<YOUR_USERNAME>/MediTrack-AI.git
+cd MediTrack-AI
+
 
 2. Install dependencies
 pip install -r requirements.txt
-# or
+# or (if using Node.js components)
 npm install
 
 
+
 3. Prepare your environment
-Add your configuration (e.g., config.py or .env file)
+Add your configuration files (e.g., config.py or .env)
 
-Place your trained model in models/
+Place your trained AI/ML models inside the models/ directory
 
-Ensure dataset/ has relevant files if you’re retraining
+Ensure dataset/ contains the required files if you plan to retrain models
 
 4. Run the application
 python app.py
@@ -67,7 +66,9 @@ Or if using Node backend:
 node server.js
 
 5. Visit in browser
-Navigate to http://127.0.0.1:5000/ (or appropriate port) to view the dashboard / assistant interface.
+Navigate to:
+👉 http://127.0.0.1:5000/ (or the configured port)
+to access the MediTrack AI dashboard / assistant interface.
 
 🔍 How It Works
 Data Input – User logs health symptoms, measurements, medication usage.
@@ -101,10 +102,7 @@ Feel free to use, modify, and distribute responsibly.
 
 🌟 If you find this project helpful, please give it a ⭐ on GitHub and share your feedback!
 
----
 
-If you like, I can create a **styled README version** with badges (e.g., Python version, build status), **screenshot placeholders**, and **section for future roadmap** too. Would you like that?
-::contentReference[oaicite:0]{index=0}
 
 
 
