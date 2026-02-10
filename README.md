@@ -49,7 +49,7 @@ cd MediTrack-AI
 2. Install dependencies
 pip install -r requirements.txt
 # or (if using Node.js components)
-npm install
+npm installs
 
 
 
