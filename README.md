@@ -100,6 +100,13 @@ Feel free to open issues or submit pull requests. Before major changes, please d
 This project is licensed under the MIT License.
 Feel free to use, modify, and distribute responsibly.
 
+
+👨‍💻 Author
+Aashish Joshi
+B.Tech CSE
+Full-Stack Web Development Project
+
+
 🌟 If you find this project helpful, please give it a ⭐ on GitHub and share your feedback!
 
 
