@@ -14,7 +14,7 @@ Full-Stack Implementation – Integrated frontend, backend, and AI components in
 
 ## 📂 Project Structure
 
-/
+
 ├── app.py # Main Flask server
 ├── server.js # Node server script (if applicable)
 ├── train_model.py # Script for training AI/ML models
