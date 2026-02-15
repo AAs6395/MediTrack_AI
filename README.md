@@ -5,6 +5,7 @@ MediTrack AI is an end-to-end, AI-powered healthcare solution designed to help u
 📊 Health Tracking Dashboard
 Log, track, and visualize health metrics over time, including vital signs, symptoms, and medication history.
 
+
 ⏰ Smart Reminders & Alerts
 Automated reminders for:
 
