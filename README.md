@@ -69,31 +69,31 @@ git clone https://github.com/<YOUR_USERNAME>/MediTrack-AI.git
 cd MediTrack-AI
 
 
-2. Install dependencies
+### 2. Install dependencies
 pip install -r requirements.txt
-# or (if using Node.js components)
+or (if using Node.js components)
 npm install
 
 
 
-3. Prepare your environment
+### 3. Prepare your environment
 Add your configuration files (e.g., config.py or .env)
 
 Place your trained AI/ML models inside the models/ directory
 
 Ensure dataset/ contains the required files if you plan to retrain models
 
-4. Run the application
+### 4. Run the application
 python app.py
 Or if using Node backend:
 node server.js
 
-5. Visit in browser
+### 5. Visit in browser
 Navigate to:
 👉 http://127.0.0.1:5000/ (or the configured port)
 to access the MediTrack AI dashboard / assistant interface.
 
-🔍 How It Works
+## 🔍 How It Works
 Data Input – User logs health symptoms, measurements, medication usage.
 
 Model Prediction – Backend loads model (models/…) and uses predict_disease.py logic to predict risk scores or conditions.
@@ -104,7 +104,7 @@ Engagement Feedback – UI dynamically shows personalized suggestions, graphs of
 
 Tracking – All logs stored for longitudinal analysis and model-retraining pipeline.
 
-📈 Dashboard / UI Highlights
+## 📈 Dashboard / UI Highlights
 (You may want to insert screenshots here)
 
 Visual trend charts (e.g., vitals over time)
@@ -115,16 +115,16 @@ Prediction result card – shows probable condition + next steps
 
 Engagement module – “How are you feeling?” prompts, log input forms
 
-✅ Contribution
+## ✅ Contribution
 Contributions are more than welcome!
 Feel free to open issues or submit pull requests. Before major changes, please discuss via an issue so we align on direction.
 
-📄 License
+## 📄 License
 This project is licensed under the MIT License.
 Feel free to use, modify, and distribute responsibly.
 
 
-👨‍💻 Author
+## 👨‍💻 Author
 Aashish Joshi
 B.Tech CSE
 Full-Stack Web Development Project
