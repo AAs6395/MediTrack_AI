@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'templates'));
 const db = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'aashish@1234',
+    password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'medical_tracker',
     charset: 'utf8mb4',
     connectTimeout: 60000,
