@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediTrack AI — Smart Health Management</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a class="nav-brand" href="#">
+                <div class="brand-icon"><i class="fas fa-heart-pulse"></i></div>
+                <span>MediTrack <em>AI</em></span>
+            </a>
+            <div class="nav-menu">
+                <a href="#dashboard" class="nav-link active"><i class="fas fa-gauge-high"></i><span>Dashboard</span></a>
+                <a href="#medications" class="nav-link"><i class="fas fa-pills"></i><span>Meds</span></a>
+                <a href="#reminders" class="nav-link"><i class="fas fa-bell"></i><span>Reminders</span></a>
+                <a href="#vitals" class="nav-link"><i class="fas fa-heart-pulse"></i><span>Vitals</span></a>
+                <a href="#appointments" class="nav-link"><i class="fas fa-calendar-check"></i><span>Appointments</span></a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-theme" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-ai-nav" onclick="openAIAssistant()">
+                    <i class="fas fa-robot"></i> AI Assistant
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Float Button -->
+    <button class="ai-fab" onclick="openAIAssistant()" title="Open AI Health Assistant">
+        <i class="fas fa-robot"></i>
+        <div class="fab-ring"></div>
+        <div class="fab-tooltip">AI Health Assistant</div>
+    </button>
+
+    <div class="page-wrapper">
+        <!-- Hero -->
+        <header class="hero">
+            <div class="hero-bg">
+                <div class="hero-orb hero-orb-1"></div>
+                <div class="hero-orb hero-orb-2"></div>
+                <div class="hero-grid"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-sparkles"></i> AI-Powered Healthcare</div>
+                <h1 class="hero-title">Your Personal<br><em>Health Command Center</em></h1>
+                <p class="hero-sub">Track medications, monitor vitals, set smart reminders, and get AI-powered disease insights — all in one place.</p>
+                <div class="hero-cta">
+                    <button class="cta-primary" onclick="openAIAssistant()">
+                        <i class="fas fa-robot"></i> Try AI Diagnosis
+                    </button>
+                    <button class="cta-ghost" onclick="document.getElementById('medications').scrollIntoView({behavior:'smooth'})">
+                        Explore Features <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hv-card hv-card-1">
+                    <i class="fas fa-heart-pulse"></i>
+                    <div><span class="hv-val">72</span> <span class="hv-unit">bpm</span></div>
+                    <div class="hv-label">Heart Rate</div>
+                    <div class="hv-bar"><div class="hv-fill" style="width:65%"></div></div>
+                </div>
+                <div class="hv-card hv-card-2">
+                    <i class="fas fa-droplet"></i>
+                    <div><span class="hv-val">98</span> <span class="hv-unit">mg/dL</span></div>
+                    <div class="hv-label">Blood Sugar</div>
+                    <div class="hv-bar"><div class="hv-fill normal" style="width:42%"></div></div>
+                </div>
+                <div class="hv-card hv-card-3">
+                    <i class="fas fa-pills"></i>
+                    <div><span class="hv-val">3</span> <span class="hv-unit">today</span></div>
+                    <div class="hv-label">Medications</div>
+                    <div class="hv-dots">
+                        <span class="dot taken"></span><span class="dot taken"></span><span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <section id="dashboard" class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card s1">
+                    <div class="stat-icon"><i class="fas fa-pills"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-num" id="totalMeds">0</div>
+                        <div class="stat-label">Active Medications</div>
+                    </div>
+                    <div class="stat-glow"></div>
+                </div>
+                <div class="stat-card s2">
+                    <div class="stat-icon"><i class="fas fa-bell"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-num" id="todayReminders">0</div>
+                        <div class="stat-label">Today's Reminders</div>
+                    </div>
+                    <div class="stat-glow"></div>
+                </div>
+                <div class="stat-card s3">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-num" id="upcomingAppointments">0</div>
+                        <div class="stat-label">Upcoming Appointments</div>
+                    </div>
+                    <div class="stat-glow"></div>
+                </div>
+                <div class="stat-card s4">
+                    <div class="stat-icon"><i class="fas fa-heart-pulse"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-num" id="vitalRecords">0</div>
+                        <div class="stat-label">Vital Records</div>
+                    </div>
+                    <div class="stat-glow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sections label -->
+        <div class="sections-label">
+            <span><i class="fas fa-th-large"></i> Health Modules</span>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="modules-grid">
+
+            <!-- Medications -->
+            <section id="medications" class="module-card mc-blue">
+                <div class="mc-header">
+                    <div class="mc-icon"><i class="fas fa-pills"></i></div>
+                    <div class="mc-title">
+                        <h2>Medications</h2>
+                        <p>Daily medication tracker</p>
+                    </div>
+                    <button class="mc-toggle" onclick="toggleForm('medForm')" title="Add medication">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="mc-form" id="medForm">
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Medicine Name</label>
+                            <input type="text" id="medName" placeholder="e.g. Aspirin">
+                        </div>
+                        <div class="field">
+                            <label>Dosage</label>
+                            <input type="text" id="medDosage" placeholder="e.g. 500mg">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Frequency</label>
+                            <select id="medFrequency">
+                                <option>Once daily</option>
+                                <option>Twice daily</option>
+                                <option>Three times daily</option>
+                                <option>As needed</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Time</label>
+                            <input type="time" id="medTime">
+                        </div>
+                    </div>
+                    <button class="form-submit" onclick="addMedication()">
+                        <i class="fas fa-plus-circle"></i> Add Medication
+                    </button>
+                </div>
+                <div class="mc-list" id="medicationList"></div>
+            </section>
+
+            <!-- Reminders -->
+            <section id="reminders" class="module-card mc-pink">
+                <div class="mc-header">
+                    <div class="mc-icon"><i class="fas fa-bell"></i></div>
+                    <div class="mc-title">
+                        <h2>Reminders</h2>
+                        <p>Health alerts & notifications</p>
+                    </div>
+                    <button class="mc-toggle" onclick="toggleForm('remForm')" title="Add reminder">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="mc-form" id="remForm">
+                    <div class="field">
+                        <label>Reminder Title</label>
+                        <input type="text" id="reminderTitle" placeholder="e.g. Doctor visit">
+                    </div>
+                    <div class="field">
+                        <label>Date & Time</label>
+                        <input type="datetime-local" id="reminderDateTime">
+                    </div>
+                    <div class="field">
+                        <label>Notes</label>
+                        <textarea id="reminderNotes" rows="2" placeholder="Additional notes..."></textarea>
+                    </div>
+                    <button class="form-submit" onclick="addReminder()">
+                        <i class="fas fa-bell-plus"></i> Set Reminder
+                    </button>
+                </div>
+                <div class="mc-list" id="reminderList"></div>
+            </section>
+
+            <!-- Vitals -->
+            <section id="vitals" class="module-card mc-teal">
+                <div class="mc-header">
+                    <div class="mc-icon"><i class="fas fa-heart-pulse"></i></div>
+                    <div class="mc-title">
+                        <h2>Vital Signs</h2>
+                        <p>Monitor your health metrics</p>
+                    </div>
+                    <button class="mc-toggle" onclick="toggleForm('vitForm')" title="Record vitals">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="mc-form" id="vitForm">
+                    <div class="form-row">
+                        <div class="field">
+                            <label><i class="fas fa-heartbeat"></i> Blood Pressure</label>
+                            <input type="text" id="bloodPressure" placeholder="120/80 mmHg">
+                        </div>
+                        <div class="field">
+                            <label><i class="fas fa-heart"></i> Heart Rate</label>
+                            <input type="number" id="heartRate" placeholder="72 bpm">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label><i class="fas fa-thermometer"></i> Temperature</label>
+                            <input type="number" step="0.1" id="temperature" placeholder="98.6 °F">
+                        </div>
+                        <div class="field">
+                            <label><i class="fas fa-droplet"></i> Blood Sugar</label>
+                            <input type="number" id="bloodSugar" placeholder="100 mg/dL">
+                        </div>
+                    </div>
+                    <button class="form-submit" onclick="addVitalSigns()">
+                        <i class="fas fa-plus-circle"></i> Record Vitals
+                    </button>
+                </div>
+                <div class="mc-list" id="vitalsList"></div>
+            </section>
+
+            <!-- Appointments -->
+            <section id="appointments" class="module-card mc-amber">
+                <div class="mc-header">
+                    <div class="mc-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="mc-title">
+                        <h2>Appointments</h2>
+                        <p>Schedule & track visits</p>
+                    </div>
+                    <button class="mc-toggle" onclick="toggleForm('aptForm')" title="Add appointment">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="mc-form" id="aptForm">
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Doctor / Clinic</label>
+                            <input type="text" id="appointmentDoctor" placeholder="Dr. Smith">
+                        </div>
+                        <div class="field">
+                            <label>Type</label>
+                            <select id="appointmentType">
+                                <option>Check-up</option>
+                                <option>Follow-up</option>
+                                <option>Consultation</option>
+                                <option>Test</option>
+                                <option>Emergency</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Date & Time</label>
+                            <input type="datetime-local" id="appointmentDateTime">
+                        </div>
+                        <div class="field">
+                            <label>Location</label>
+                            <input type="text" id="appointmentLocation" placeholder="Clinic address">
+                        </div>
+                    </div>
+                    <button class="form-submit" onclick="addAppointment()">
+                        <i class="fas fa-calendar-plus"></i> Schedule Appointment
+                    </button>
+                </div>
+                <div class="mc-list" id="appointmentList"></div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <i class="fas fa-heart-pulse"></i>
+                    <span>MediTrack <em>AI</em></span>
+                </div>
+                <p class="footer-disclaimer">For informational purposes only. Not a substitute for professional medical advice.</p>
+                <p class="footer-copy">© 2025 MediTrack AI · Built with ❤️ by Aashish Joshi</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/static/script.js"></script>
+    <script>
+        function openAIAssistant() { window.open('/ai-assistant', '_blank'); }
+        function toggleForm(id) {
+            const f = document.getElementById(id);
+            f.classList.toggle('open');
+        }
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.getElementById('themeBtn').innerHTML = isDark
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+        }
+        // Persist theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+            document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+        });
+        // Active nav highlight
+        const sections = document.querySelectorAll('section[id], header[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+            navLinks.forEach(l => {
+                l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+            });
+        });
+    </script>
+</body>
+</html>
